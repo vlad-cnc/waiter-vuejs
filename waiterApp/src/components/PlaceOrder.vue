@@ -14,14 +14,13 @@
 
         <!--Pick a table-->
         <label>Pick a table:</label>
-        <select v-model="table">
-          <option disabled value="">Select table...</option>
-          <option>Table 1</option>
-          <option>Table 2</option>
-          <option>Table 3</option>
-          <option>Table 4</option>
-          <option>Table 5</option>
-        </select>
+        <div class="tables">
+          <div class="table"
+               v-bind:class="isTaken(keyT)"
+               v-for="(table, keyT) in tables"
+               :key="keyT"
+               @click="takeTable(keyT)">{{table.tableName}}</div>
+        </div>
         <div class="submit"><a @click.prevent="submitOrder()">Submit order</a></div>
       </div>
 
@@ -32,7 +31,7 @@
           <label>Meals:</label>
           <ul class="order-list">
             <li v-for="(order, key) in total" :key="key" >
-              <span>{{ order }}</span>
+              <span>{{ order.meal }}</span>
               <div @click.prevent="removeMeal(key)" class="remove">x</div>
             </li>
           </ul>
@@ -61,25 +60,53 @@
         total:[],
         orderedMeal: '',
         table: '',
+        tableKey: '',
         minValue: [],
         errors: [],
-        myJSON : '{ "name":"John", "age":31, "city":"New York" }',
+        tables: []
       }
     },
     created() {
-      axios.get(`static/menu.json`)
+
+      axios.get(`http://localhost:3000/tables`)
+        .then(response => {
+          this.tables = response.data
+        })
+        .catch(e => {
+          this.errors.push(e)
+        });
+
+      axios.get(`http://localhost:3000/menu`)
         .then(response => {
           this.meals = response.data
         })
         .catch(e => {
           this.errors.push(e)
-        })
+        });
     },
 
     methods: {
+      isTaken(keyT){
+        if(this.tables[keyT].status !== "taken"){
+          return "free"
+        }
+        else {
+          return "taken"
+        }
+      },
+
+      takeTable(keyT) {
+        if(this.tables[keyT].status !== "taken"){
+          this.tables[keyT].status = "taken";
+        }
+        else {
+          alert('This table is already taken!')
+        }
+      },
+
       addTotal() {
         if(this.orderedMeal !== ""){
-          this.total.push(this.orderedMeal);
+          this.total.push({meal: this.orderedMeal});
           this.orderedMeal = "";
         }
       },
@@ -90,10 +117,9 @@
       },
 
       submitOrder() {
-        console.log(JSON.parse(this.myJSON));
-        axios.post(`static/orders.json`, {
-          body: this.myJSON
-
+        axios.post(`http://localhost:3000/orders`, {
+          order: this.total,
+          id: this.table.split(' ').pop()
         })
           .then(response => {
 
@@ -101,9 +127,8 @@
           .catch(e => {
               this.errors.push(e)
             }
-          )
+          );
       },
-
     },
     computed: {
 
@@ -130,9 +155,6 @@
       font: {
         weight: 800;
       };
-    }
-    ul {
-      /*padding: 0;*/
     }
     select {
       max-width: 300px;
@@ -183,6 +205,28 @@
       &:hover {
         background: {
           color: #34714e;
+        };
+      }
+    }
+    .tables {
+      margin: {
+        right: 30px;
+      };
+      display: flex;
+      justify-content: space-between;
+    }
+    .table {
+      color: white;
+      background: #47aa79;
+      padding: 5px;
+      line-height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      text-align: center;
+      cursor: pointer;
+      &.taken {
+        background: {
+          color: #c1000c;
         };
       }
     }

@@ -1,0 +1,183 @@
+{
+  "menu": [
+    {
+      "ID": 1,
+      "mealName": "Fruit Plate",
+      "mealPrice": "$64.79"
+    },
+    {
+      "ID": 2,
+      "mealName": "Onion Soup",
+      "mealPrice": "$63.10"
+    },
+    {
+      "ID": 3,
+      "mealName": "Parsley - Fresh",
+      "mealPrice": "$74.76"
+    },
+    {
+      "ID": 4,
+      "mealName": "Tea - Vanilla Chai",
+      "mealPrice": "$6.88"
+    },
+    {
+      "ID": 5,
+      "mealName": "Crab Legs",
+      "mealPrice": "$32.19"
+    },
+    {
+      "ID": 6,
+      "mealName": "Appetizer - Mushroom Tart",
+      "mealPrice": "$41.36"
+    },
+    {
+      "ID": 7,
+      "mealName": "Garlic Bread",
+      "mealPrice": "$46.61"
+    },
+    {
+      "ID": 8,
+      "mealName": "Chilli",
+      "mealPrice": "$50.43"
+    },
+    {
+      "ID": 9,
+      "mealName": "Wine - Montecillo Rioja Crianza",
+      "mealPrice": "$83.17"
+    },
+    {
+      "ID": 10,
+      "mealName": "Chia Pudding",
+      "mealPrice": "$95.81"
+    },
+    {
+      "ID": 11,
+      "mealName": "Lettuce - Red Leaf",
+      "mealPrice": "$50.15"
+    },
+    {
+      "ID": 12,
+      "mealName": "Banana - Green",
+      "mealPrice": "$31.48"
+    },
+    {
+      "ID": 13,
+      "mealName": "Soup - Vegetable",
+      "mealPrice": "$55.43"
+    },
+    {
+      "ID": 14,
+      "mealName": "Cakes Assorted",
+      "mealPrice": "$36.57"
+    },
+    {
+      "ID": 15,
+      "mealName": "Vegan Pizza",
+      "mealPrice": "$85.64"
+    }
+  ],
+  "tables": [
+    {
+      "tableName": "Table 1",
+      "id": 1,
+      "status": "free"
+    },
+    {
+      "tableName": "Table 2",
+      "id": 2,
+      "status": "free"
+    },
+    {
+      "tableName": "Table 3",
+      "id": 3,
+      "status": "free"
+    },
+    {
+      "tableName": "Table 4",
+      "id": 4,
+      "status": "free"
+    },
+    {
+      "tableName": "Table 5",
+      "id": 5,
+      "status": "free"
+    }
+  ],
+  "orders": [
+    {},
+    {
+      "order": [
+        {
+          "meal": "Tea - Vanilla Chai - $6.88"
+        },
+        {
+          "meal": "Tea - Vanilla Chai - $6.88"
+        },
+        {
+          "meal": "Garlic Bread - $46.61"
+        }
+      ],
+      "id": "3"
+    },
+    {
+      "order": [
+        {
+          "meal": "Onion Soup - $63.10"
+        },
+        {
+          "meal": "Appetizer - Mushroom Tart - $41.36"
+        }
+      ],
+      "id": "Knp2lCs"
+    },
+    {
+      "order": [
+        {
+          "meal": "Onion Soup - $63.10"
+        },
+        {
+          "meal": "Appetizer - Mushroom Tart - $41.36"
+        }
+      ],
+      "id": "JbSN9qH"
+    },
+    {
+      "order": [
+        {
+          "meal": "Onion Soup - $63.10"
+        },
+        {
+          "meal": "Appetizer - Mushroom Tart - $41.36"
+        }
+      ],
+      "id": "n1fGBt7"
+    },
+    {
+      "order": [
+        {
+          "meal": "Onion Soup - $63.10"
+        },
+        {
+          "meal": "Appetizer - Mushroom Tart - $41.36"
+        }
+      ],
+      "id": "FZBLruj"
+    },
+    {
+      "order": [
+        {
+          "meal": "Parsley - Fresh - $74.76"
+        }
+      ],
+      "id": "QjhoVBw"
+    },
+    {
+      "order": [
+        {
+          "meal": "Appetizer - Mushroom Tart - $41.36"
+        }
+      ],
+      "id": "r1bHLcZ"
+    }
+  ]
+}
