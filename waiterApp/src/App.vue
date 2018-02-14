@@ -3,9 +3,9 @@
     <img class="logo" src="./assets/logo.png">
     <div class="menu">
       <ul class="menu main">
-        <li><router-link :to="{ path: '/' }">Home</router-link></li>
+        <!--<li><router-link :to="{ path: '/' }">Home</router-link></li>-->
+        <li><router-link :to="{ path: '/' }">Place Orders</router-link></li>
         <li><router-link :to="{ path: 'orders' }">See Orders</router-link></li>
-        <li><router-link :to="{ path: 'place-order' }">Place Orders</router-link></li>
       </ul>
     </div>
     <div class="container">
@@ -61,7 +61,8 @@ export default {
         };
         display: block;
         color: white;
-        &:hover {
+        &:hover,
+        &.router-link-exact-active{
           background: {
             color: #34714e;
           };
@@ -75,12 +76,43 @@ export default {
     height: auto;
   }
   .container {
+    min-height: 500px;
     max-width: 960px;
     padding: 20px;
     box-sizing: border-box;
     margin: auto;
     background: aliceblue;
-    height: 500px;
     text-align: left;
   }
+.tables {
+  margin: {
+    right: 30px;
+  };
+  display: flex;
+  justify-content: space-between;
+}
+.title-page {
+  text-align: center;
+}
+.table {
+  color: white;
+  background: #47aa79;
+  padding: 5px;
+  line-height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  &.taken,
+  &:hover{
+    background: {
+      color: #c1000c;
+    };
+  }
+  &.served {
+    background: {
+      color: #d07814;
+    };
+  }
+}
 </style>

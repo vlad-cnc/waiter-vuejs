@@ -16,11 +16,6 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'home-page',
-      component: HomePage
-    },
-    {
-      path: '/place-order',
       name: 'place-order',
       component: PlaceOrder
     }

@@ -18,6 +18,7 @@
           <div class="table"
                v-bind:class="isTaken(keyT)"
                v-for="(table, keyT) in tables"
+
                :key="keyT"
                @click="takeTable(keyT)">{{table.tableName}}</div>
         </div>
@@ -46,7 +47,6 @@
       </li>
     </ul>
   </div>
-
 </template>
 
 <script>
@@ -87,17 +87,25 @@
 
     methods: {
       isTaken(keyT){
-        if(this.tables[keyT].status !== "taken"){
+        if(this.tables[keyT].status === "free"){
           return "free"
         }
-        else {
+        else if(this.tables[keyT].status === "taken") {
           return "taken"
+        }
+        else {
+          return "served"
         }
       },
 
       takeTable(keyT) {
-        if(this.tables[keyT].status !== "taken"){
-          this.tables[keyT].status = "taken";
+        this.table = 'Table: '+ (keyT +1);
+        if(this.tables[keyT].status === "free"){
+          axios.put(`http://localhost:3000/tables/` + (keyT +1), {
+            tableName: this.tables[keyT].tableName,
+            id: this.tables[keyT].id,
+            status: 'taken'
+          });
         }
         else {
           alert('This table is already taken!')
@@ -112,7 +120,6 @@
       },
 
       removeMeal(key) {
-        console.log(key);
         this.total.splice(key, 1);
       },
 
@@ -122,12 +129,20 @@
           id: this.table.split(' ').pop()
         })
           .then(response => {
-
           })
           .catch(e => {
               this.errors.push(e)
             }
           );
+        axios.get(`http://localhost:3000/tables`)
+          .then(response => {
+            this.tables = response.data
+          })
+          .catch(e => {
+            this.errors.push(e)
+          });
+        this.table = '';
+        this.total = [];
       },
     },
     computed: {
@@ -208,27 +223,6 @@
         };
       }
     }
-    .tables {
-      margin: {
-        right: 30px;
-      };
-      display: flex;
-      justify-content: space-between;
-    }
-    .table {
-      color: white;
-      background: #47aa79;
-      padding: 5px;
-      line-height: 60px;
-      width: 60px;
-      border-radius: 50%;
-      text-align: center;
-      cursor: pointer;
-      &.taken {
-        background: {
-          color: #c1000c;
-        };
-      }
-    }
+
   }
 </style>
