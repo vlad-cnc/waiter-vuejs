@@ -5,23 +5,12 @@
         <h2>Create an order:</h2>
 
         <!--Pick a meal-->
-        <label>Pick a meal:</label>
-        <select  v-model="orderedMeal" class="meal-picker">
-          <option disabled value="">Select a meal...</option>
-          <option v-for="meal in meals">{{meal.mealName}}  -  {{meal.mealPrice}}</option>
-        </select>
-        <button v-on:click="addTotal">Add Meal</button>
+        <meal-picker/>
 
-        <!--Pick a table-->
-        <label>Pick a table:</label>
-        <div class="tables">
-          <div class="table"
-               v-bind:class="isTaken(keyT)"
-               v-for="(table, keyT) in tables"
+        <!--Table picking component.-->
+        <tables/>
 
-               :key="keyT"
-               @click="takeTable(keyT)">{{table.tableName}}</div>
-        </div>
+        <!--Submit order button.-->
         <div class="submit"><a @click.prevent="submitOrder()">Submit order</a></div>
       </div>
 
@@ -51,8 +40,13 @@
 
 <script>
   import axios from 'axios';
+  import Tables from "./Tables";
+  import MealPicker from "./MealPicker";
 
   export default {
+    components: {
+      MealPicker,
+      Tables},
     name: "place-order",
     data() {
       return {
@@ -68,21 +62,21 @@
     },
     created() {
 
-      axios.get(`http://localhost:3000/tables`)
-        .then(response => {
-          this.tables = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        });
-
-      axios.get(`http://localhost:3000/menu`)
-        .then(response => {
-          this.meals = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        });
+      // axios.get(`http://localhost:3000/tables`)
+      //   .then(response => {
+      //     this.tables = response.data
+      //   })
+      //   .catch(e => {
+      //     this.errors.push(e)
+      //   });
+      //
+      // axios.get(`http://localhost:3000/menu`)
+      //   .then(response => {
+      //     this.meals = response.data
+      //   })
+      //   .catch(e => {
+      //     this.errors.push(e)
+      //   });
     },
 
     methods: {

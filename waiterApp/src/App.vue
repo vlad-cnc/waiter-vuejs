@@ -18,11 +18,13 @@
 import Orders from "./components/Orders";
 import HomePage from "./components/HomePage";
 import axios from 'axios';
+import Tables from "./components/Tables"
 
 export default {
   components: {
+    Tables,
     Orders,
-    HomePage
+    HomePage,
   },
   name: 'App',
 
